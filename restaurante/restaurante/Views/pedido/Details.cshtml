@@ -1,0 +1,90 @@
+﻿@model restaurante.Models.pedido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.precio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pagado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pagado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.confirmado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.confirmado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.servido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.servido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.camarero1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.camarero1.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cliente1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cliente1.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.mesa1.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.mesa1.id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

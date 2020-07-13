@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="RestauranteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="camarero">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="foto" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__camarero__45F365D3" FromRole="camarero" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="cliente">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="telf" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="usuario" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK__cliente__usuario__398D8EEE" FromRole="cliente" ToRole="usuario" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__cliente__440B1D61" FromRole="cliente" ToRole="pedido" />
+    <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__cliente__403A8C7D" FromRole="cliente" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="consumicion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="servida" Type="Int32" Nullable="false" />
+    <Property Name="pedido" Type="Int32" Nullable="false" />
+    <Property Name="itemconsumicion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="itemconsumicion1" Relationship="Self.FK__consumici__itemc__5812160E" FromRole="consumicion" ToRole="itemconsumicion" />
+    <NavigationProperty Name="pedido1" Relationship="Self.FK__consumici__pedid__571DF1D5" FromRole="consumicion" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="itemconsumicion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="255" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <NavigationProperty Name="consumicion" Relationship="Self.FK__consumici__itemc__5812160E" FromRole="itemconsumicion" ToRole="consumicion" />
+    <NavigationProperty Name="menu" Relationship="Self.FK__menu__itemconsum__4CA06362" FromRole="itemconsumicion" ToRole="menu" />
+    <NavigationProperty Name="producto" Relationship="Self.FK__producto__itemco__5070F446" FromRole="itemconsumicion" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="itemconsumicion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="itemconsumicion1" Relationship="Self.FK__menu__itemconsum__4CA06362" FromRole="menu" ToRole="itemconsumicion" />
+    <NavigationProperty Name="productosmenu" Relationship="Self.FK__productosm__menu__5441852A" FromRole="menu" ToRole="productosmenu" />
+  </EntityType>
+  <EntityType Name="mesa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="numero" Type="Int32" Nullable="false" />
+    <Property Name="libre" Type="Int32" Nullable="false" />
+    <Property Name="max_personas" Type="Int32" Nullable="false" />
+    <Property Name="comensales" Type="Int32" Nullable="false" />
+    <Property Name="num_mesas" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK__pedido__mesa__44FF419A" FromRole="mesa" ToRole="pedido" />
+    <NavigationProperty Name="reserva" Relationship="Self.FK__reserva__mesa__412EB0B6" FromRole="mesa" ToRole="reserva" />
+  </EntityType>
+  <EntityType Name="pedido">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="precio" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="pagado" Type="Int32" Nullable="false" />
+    <Property Name="confirmado" Type="Int32" Nullable="false" />
+    <Property Name="servido" Type="Int32" Nullable="false" />
+    <Property Name="activo" Type="Int32" Nullable="false" />
+    <Property Name="cliente" Type="Int32" Nullable="false" />
+    <Property Name="mesa" Type="Int32" Nullable="false" />
+    <Property Name="camarero" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="camarero1" Relationship="Self.FK__pedido__camarero__45F365D3" FromRole="pedido" ToRole="camarero" />
+    <NavigationProperty Name="cliente1" Relationship="Self.FK__pedido__cliente__440B1D61" FromRole="pedido" ToRole="cliente" />
+    <NavigationProperty Name="consumicion" Relationship="Self.FK__consumici__pedid__571DF1D5" FromRole="pedido" ToRole="consumicion" />
+    <NavigationProperty Name="mesa1" Relationship="Self.FK__pedido__mesa__44FF419A" FromRole="pedido" ToRole="mesa" />
+  </EntityType>
+  <EntityType Name="producto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tipoproducto" Type="Int32" Nullable="false" />
+    <Property Name="itemconsumicion" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="itemconsumicion1" Relationship="Self.FK__producto__itemco__5070F446" FromRole="producto" ToRole="itemconsumicion" />
+    <NavigationProperty Name="tipoproducto1" Relationship="Self.FK__producto__tipopr__4F7CD00D" FromRole="producto" ToRole="tipoproducto" />
+    <NavigationProperty Name="productosmenu" Relationship="Self.FK__productos__produ__534D60F1" FromRole="producto" ToRole="productosmenu" />
+  </EntityType>
+  <EntityType Name="productosmenu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="producto" Type="Int32" Nullable="false" />
+    <Property Name="menu" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="menu1" Relationship="Self.FK__productosm__menu__5441852A" FromRole="productosmenu" ToRole="menu" />
+    <NavigationProperty Name="producto1" Relationship="Self.FK__productos__produ__534D60F1" FromRole="productosmenu" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="reserva">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="finalizada" Type="Int32" Nullable="false" />
+    <Property Name="cliente" Type="Int32" Nullable="false" />
+    <Property Name="mesa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cliente1" Relationship="Self.FK__reserva__cliente__403A8C7D" FromRole="reserva" ToRole="cliente" />
+    <NavigationProperty Name="mesa1" Relationship="Self.FK__reserva__mesa__412EB0B6" FromRole="reserva" ToRole="mesa" />
+  </EntityType>
+  <EntityType Name="tipoproducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="producto" Relationship="Self.FK__producto__tipopr__4F7CD00D" FromRole="tipoproducto" ToRole="producto" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clave" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="passwd" Type="String" MaxLength="250" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="tipo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="cliente" Relationship="Self.FK__cliente__usuario__398D8EEE" FromRole="usuario" ToRole="cliente" />
+  </EntityType>
+  <Association Name="FK__pedido__camarero__45F365D3">
+    <End Role="camarero" Type="Self.camarero" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="camarero">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="camarero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__cliente__usuario__398D8EEE">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
+    <End Role="cliente" Type="Self.cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cliente">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pedido__cliente__440B1D61">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reserva__cliente__403A8C7D">
+    <End Role="cliente" Type="Self.cliente" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cliente">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="cliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__consumici__itemc__5812160E">
+    <End Role="itemconsumicion" Type="Self.itemconsumicion" Multiplicity="1" />
+    <End Role="consumicion" Type="Self.consumicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="itemconsumicion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumicion">
+        <PropertyRef Name="itemconsumicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__consumici__pedid__571DF1D5">
+    <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+    <End Role="consumicion" Type="Self.consumicion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedido">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="consumicion">
+        <PropertyRef Name="pedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__menu__itemconsum__4CA06362">
+    <End Role="itemconsumicion" Type="Self.itemconsumicion" Multiplicity="1" />
+    <End Role="menu" Type="Self.menu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="itemconsumicion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="menu">
+        <PropertyRef Name="itemconsumicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__producto__itemco__5070F446">
+    <End Role="itemconsumicion" Type="Self.itemconsumicion" Multiplicity="1" />
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="itemconsumicion">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="itemconsumicion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__productosm__menu__5441852A">
+    <End Role="menu" Type="Self.menu" Multiplicity="1" />
+    <End Role="productosmenu" Type="Self.productosmenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="menu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productosmenu">
+        <PropertyRef Name="menu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pedido__mesa__44FF419A">
+    <End Role="mesa" Type="Self.mesa" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mesa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__reserva__mesa__412EB0B6">
+    <End Role="mesa" Type="Self.mesa" Multiplicity="1" />
+    <End Role="reserva" Type="Self.reserva" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mesa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reserva">
+        <PropertyRef Name="mesa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__producto__tipopr__4F7CD00D">
+    <End Role="tipoproducto" Type="Self.tipoproducto" Multiplicity="1" />
+    <End Role="producto" Type="Self.producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoproducto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="producto">
+        <PropertyRef Name="tipoproducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__productos__produ__534D60F1">
+    <End Role="producto" Type="Self.producto" Multiplicity="1" />
+    <End Role="productosmenu" Type="Self.productosmenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producto">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="productosmenu">
+        <PropertyRef Name="producto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="RestauranteEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="camarero" EntityType="Self.camarero" />
+    <EntitySet Name="cliente" EntityType="Self.cliente" />
+    <EntitySet Name="consumicion" EntityType="Self.consumicion" />
+    <EntitySet Name="itemconsumicion" EntityType="Self.itemconsumicion" />
+    <EntitySet Name="menu" EntityType="Self.menu" />
+    <EntitySet Name="mesa" EntityType="Self.mesa" />
+    <EntitySet Name="pedido" EntityType="Self.pedido" />
+    <EntitySet Name="producto" EntityType="Self.producto" />
+    <EntitySet Name="productosmenu" EntityType="Self.productosmenu" />
+    <EntitySet Name="reserva" EntityType="Self.reserva" />
+    <EntitySet Name="tipoproducto" EntityType="Self.tipoproducto" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <AssociationSet Name="FK__pedido__camarero__45F365D3" Association="Self.FK__pedido__camarero__45F365D3">
+      <End Role="camarero" EntitySet="camarero" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__cliente__usuario__398D8EEE" Association="Self.FK__cliente__usuario__398D8EEE">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="cliente" EntitySet="cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pedido__cliente__440B1D61" Association="Self.FK__pedido__cliente__440B1D61">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reserva__cliente__403A8C7D" Association="Self.FK__reserva__cliente__403A8C7D">
+      <End Role="cliente" EntitySet="cliente" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK__consumici__itemc__5812160E" Association="Self.FK__consumici__itemc__5812160E">
+      <End Role="itemconsumicion" EntitySet="itemconsumicion" />
+      <End Role="consumicion" EntitySet="consumicion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__consumici__pedid__571DF1D5" Association="Self.FK__consumici__pedid__571DF1D5">
+      <End Role="pedido" EntitySet="pedido" />
+      <End Role="consumicion" EntitySet="consumicion" />
+    </AssociationSet>
+    <AssociationSet Name="FK__menu__itemconsum__4CA06362" Association="Self.FK__menu__itemconsum__4CA06362">
+      <End Role="itemconsumicion" EntitySet="itemconsumicion" />
+      <End Role="menu" EntitySet="menu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__producto__itemco__5070F446" Association="Self.FK__producto__itemco__5070F446">
+      <End Role="itemconsumicion" EntitySet="itemconsumicion" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__productosm__menu__5441852A" Association="Self.FK__productosm__menu__5441852A">
+      <End Role="menu" EntitySet="menu" />
+      <End Role="productosmenu" EntitySet="productosmenu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pedido__mesa__44FF419A" Association="Self.FK__pedido__mesa__44FF419A">
+      <End Role="mesa" EntitySet="mesa" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__reserva__mesa__412EB0B6" Association="Self.FK__reserva__mesa__412EB0B6">
+      <End Role="mesa" EntitySet="mesa" />
+      <End Role="reserva" EntitySet="reserva" />
+    </AssociationSet>
+    <AssociationSet Name="FK__producto__tipopr__4F7CD00D" Association="Self.FK__producto__tipopr__4F7CD00D">
+      <End Role="tipoproducto" EntitySet="tipoproducto" />
+      <End Role="producto" EntitySet="producto" />
+    </AssociationSet>
+    <AssociationSet Name="FK__productos__produ__534D60F1" Association="Self.FK__productos__produ__534D60F1">
+      <End Role="producto" EntitySet="producto" />
+      <End Role="productosmenu" EntitySet="productosmenu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

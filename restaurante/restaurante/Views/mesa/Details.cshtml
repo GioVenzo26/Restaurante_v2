@@ -1,0 +1,58 @@
+﻿@model restaurante.Models.mesa
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>mesa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.libre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.libre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.max_personas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.max_personas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comensales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comensales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_mesas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_mesas)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

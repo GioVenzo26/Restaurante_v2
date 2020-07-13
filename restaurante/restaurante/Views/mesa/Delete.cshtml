@@ -1,0 +1,64 @@
+﻿@model restaurante.Models.mesa
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>mesa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.libre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.libre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.max_personas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.max_personas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comensales)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comensales)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.num_mesas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.num_mesas)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

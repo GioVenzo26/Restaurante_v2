@@ -1,0 +1,81 @@
+﻿@model IEnumerable<restaurante.Models.pedido>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pagado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.confirmado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.servido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.camarero1.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cliente1.nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mesa1.id)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pagado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.confirmado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.servido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.camarero1.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cliente1.nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mesa1.id)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

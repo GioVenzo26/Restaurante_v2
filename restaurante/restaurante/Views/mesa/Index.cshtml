@@ -1,0 +1,57 @@
+﻿@model IEnumerable<restaurante.Models.mesa>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.libre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.max_personas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.comensales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_mesas)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.libre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.max_personas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.comensales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.num_mesas)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

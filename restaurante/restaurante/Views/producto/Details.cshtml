@@ -1,0 +1,34 @@
+﻿@model restaurante.Models.producto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>producto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.itemconsumicion1.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.itemconsumicion1.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipoproducto1.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipoproducto1.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
